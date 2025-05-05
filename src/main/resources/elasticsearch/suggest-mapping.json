@@ -1,0 +1,30 @@
+{
+  "properties": {
+    "id": {
+      "type": "text",
+      "fields": {
+        "keyword": {
+          "type": "keyword",
+          "ignore_above": 256
+        }
+      }
+    },
+    "text": {
+      "type": "text",
+      "analyzer": "autosuggest_analyzer",
+      "search_analyzer": "standard",
+      "fields": {
+        "fuzzy": {
+          "type": "text",
+          "analyzer": "standard"
+        }
+      }
+    },
+    "type": {
+      "type": "keyword"
+    },
+    "refId": {
+      "type": "long"
+    }
+  }
+}
