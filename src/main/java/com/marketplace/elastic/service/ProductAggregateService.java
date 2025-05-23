@@ -141,7 +141,6 @@ public class ProductAggregateService {
         );
 
         try {
-            System.out.println(searchRequest);
             return elasticsearchClient.search(searchRequest, Object.class).aggregations();
         } catch (IOException e) {
             e.printStackTrace();

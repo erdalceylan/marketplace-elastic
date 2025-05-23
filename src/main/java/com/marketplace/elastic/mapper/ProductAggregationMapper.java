@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -119,6 +120,10 @@ public class ProductAggregationMapper {
             NestedAggregate nestedAttributes = attributesAgg.nested();
             LongTermsAggregate attributeTerms = nestedAttributes.aggregations().get("attribute").lterms();
             dto.setAttributes(attributeTerms.buckets().array().stream()
+                    .filter(bucket -> {
+                        String attributeName = extractTopHitValue(bucket.aggregations().get("name"), "attribute.name");
+                        return !"renk".equals(attributeName.trim().toLowerCase(Locale.ROOT));
+                    })
                     .map(bucket -> {
                         String attributeName = extractTopHitValue(bucket.aggregations().get("name"), "attribute.name");
 

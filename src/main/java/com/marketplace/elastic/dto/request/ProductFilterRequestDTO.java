@@ -8,10 +8,12 @@ public class ProductFilterRequestDTO {
     private Integer from;
     private Integer size;
     private String q;
-    private List<Long> categoryIds;
-    private List<Long> brandIds;
-    private List<Long> colorIds;
-    private List<Long> genderIds;
+    private String modelCode;
+    private List<Long> categories;
+    private List<Long> brands;
+    private List<Long> merchants;
+    private List<Long> colors;
+    private List<Long> genders;
     private ProductFilterRequestRangeDTO price;
     private List<ProductFilterRequestParentChildDTO> attributes;
     private List<ProductFilterRequestParentChildDTO> options;

@@ -31,4 +31,8 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
-}
+
+	// ByteBuddy agent'ını manuel ekleme
+	jvmArgs = [
+			"-javaagent:${configurations.testRuntimeClasspath.find { it.name.contains('byte-buddy-agent') }.absolutePath}"]
+			}

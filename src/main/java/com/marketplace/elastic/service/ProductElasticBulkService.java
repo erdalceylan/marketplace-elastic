@@ -37,7 +37,6 @@ public class ProductElasticBulkService {
 
     private void sendBulk(){
         if (!products.isEmpty()) {
-            System.out.println("Product Elasticsearch'e kaydedildi: " + products.size());
             productRepository.saveAll(products.values());
             products.clear();
         }

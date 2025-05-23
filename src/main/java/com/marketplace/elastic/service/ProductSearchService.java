@@ -32,7 +32,7 @@ public class ProductSearchService {
     }
 
     public Product product(Long id){
-        return productRepository.findById(id).orElse(null);
+        return productRepository.findById(id).orElseThrow();
     }
 
     public List<ProductSearchItemDTO> search(BoolQuery boolQuery, Integer from, Integer size) {

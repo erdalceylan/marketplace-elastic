@@ -29,29 +29,39 @@ public class ProductFilterQueryBuilderService {
             ));
         }
 
-        if (!CollectionUtils.isEmpty(requestDTO.getBrandIds())) {
+
+        if (StringUtils.hasText(requestDTO.getModelCode())) {
+            boolQuery.filter(Query.of(q -> q
+                    .term(t -> t
+                            .field("modelCode")
+                            .value(ts -> ts.stringValue(requestDTO.getModelCode().trim()))
+                    )
+            ));
+        }
+
+        if (!CollectionUtils.isEmpty(requestDTO.getBrands())) {
             boolQuery.filter(Query.of(q -> q
                     .terms(t -> t
                             .field("brand.id")
-                            .terms(ts -> ts.value(convertToTerms(requestDTO.getBrandIds())))
+                            .terms(ts -> ts.value(convertToTerms(requestDTO.getBrands())))
                     )
             ));
         }
 
-        if (!CollectionUtils.isEmpty(requestDTO.getColorIds())) {
+        if (!CollectionUtils.isEmpty(requestDTO.getColors())) {
             boolQuery.filter(Query.of(q -> q
                     .terms(t -> t
                             .field("color.id")
-                            .terms(ts -> ts.value(convertToTerms(requestDTO.getColorIds())))
+                            .terms(ts -> ts.value(convertToTerms(requestDTO.getColors())))
                     )
             ));
         }
 
-        if (!CollectionUtils.isEmpty(requestDTO.getGenderIds())) {
+        if (!CollectionUtils.isEmpty(requestDTO.getGenders())) {
             boolQuery.filter(Query.of(q -> q
                     .terms(t -> t
                             .field("gender.id")
-                            .terms(ts -> ts.value(convertToTerms(requestDTO.getGenderIds())))
+                            .terms(ts -> ts.value(convertToTerms(requestDTO.getGenders())))
                     )
             ));
         }
@@ -74,14 +84,14 @@ public class ProductFilterQueryBuilderService {
             ));
         }
 
-        if (!CollectionUtils.isEmpty(requestDTO.getCategoryIds())) {
+        if (!CollectionUtils.isEmpty(requestDTO.getCategories())) {
             boolQuery.filter(Query.of(q -> q
                     .nested(n -> n
                             .path("categories")
                             .query(nq -> nq
                                     .terms(t -> t
                                             .field("categories.id")
-                                            .terms(ts -> ts.value(convertToTerms(requestDTO.getCategoryIds())))
+                                            .terms(ts -> ts.value(convertToTerms(requestDTO.getCategories())))
                                     )
                             )
                     )
