@@ -20,7 +20,7 @@ public class KafkaConsumerConfig {
     @Value("${kafka.elastic-update-group}")
     private String elasticUpdateGroup;
 
-    @Value("${kafka.bootstrap-servers}")
+    @Value("${spring.kafka.bootstrap-servers}")
     private String bootstrapServers;
 
     @Bean
